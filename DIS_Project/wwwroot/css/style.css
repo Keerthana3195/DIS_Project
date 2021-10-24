@@ -11,14 +11,14 @@ body{
     height:100vh;
 
 }
-.container_aish {
+.container_index {
     width: 100%;
     height: 100%;
     scroll-behaviour: smooth;
     scroll-snap-type: y mandatory;
 }
 
-.aishwarya {
+.tabs {
     position: fixed;
     top: 0;
     z-index: 1;
@@ -28,23 +28,23 @@ body{
     background: rgba(0,0,0,0.7);
 }
 
-    .aishwarya ul {
+    .tabs ul {
         display: flex;
         list-style: none;
         width: 100%;
         justify-content: center;
     }
-        .aishwarya ul li {
+        .tabs ul li {
             margin: 0 1rem;
             padding: 1rem;
         }
 
-            .aishwarya ul li a {
+            .tabs ul li a {
                 text-decoration: none;
                 text-transform: uppercase;
                 color: #f4f4f4;
             }
-                .aishwarya ul li a:hover {
+                .tabs ul li a:hover {
                     color: skyblue;
                 }
 section{
