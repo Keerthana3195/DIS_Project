@@ -21,14 +21,10 @@
         <section id="home">
             <h1 style="margin:20px;"> Home</h1>
             
-            <p>
-               
+            <p style="width:80%">               
                 A food or drug recall occurs when a company removes a product from the market because of the possibility that the food may be contaminated or the drug causes severe side effects. When an FDA-regulated product is either defective or potentially harmful, recalling that product i.e removing it from the market or correcting the problem is the most effective means for protecting the public.
                 Recalls afford equal consumer protection but generally are more efficient and timely than formal administrative or civil actions, especially when the product has been widely distributed.
                 Our website shows recalls of both foods and drugs to promote better consumer awareness and social welfare.
-
-
-
             </p>
         </section>
 
@@ -73,67 +69,147 @@
                 </tr>
 
                 <tr>
-                    <td>Diced Onions</td>
-                    <td>Jul/26/2012</td>
-                    <td>Class 1 Fatal</td>
-                    <td>Listeria Monocytozenes Contamination</td>
-                    <td>Mandated by FDA</td>
-                    <td>US</td>
-                    <td>Boston</td>
-                    <td>MA</td>
-                    <td>MA, ME, RI, NH, CT, NY, NJ</td>
-                </tr>
-                <tr>
-                    <td>Soft Tofu</td>
-                    <td>Aug/31/2012</td>
-                    <td>Class 1 Fatal</td>
-                    <td>Listeria Monocytozenes Contamination</td>
+                    <td>Kroger Kale Bag</td>
+                    <td>09/15/2021</td>
+                    <td>Class I</td>
+                    <td>Potential contamination with Listeria Monocytogenes</td>
                     <td>Voluntry, Firm Initiated</td>
-                    <td>US</td>
-                    <td>Newark</td>
+                    <td>United States</td>
+                    <td>Cincinnati</td>
+                    <td>OH</td>
+                    <td>AL, GA, MI, OH, SC, TN, WV</td>
+                </tr>
+
+                <tr>
+                    <td>Mr. Nut brand Dried Oleaster</td>
+                    <td>09/20/2021</td>
+                    <td>Class III</td>
+                    <td>Undeclared sulfites</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>United States</td>
+                    <td>Kearny</td>
                     <td>NJ</td>
-                    <td>Nationwide</td>
+                    <td>GA, NJ, PA, VA, NC, NY, MD, TN, OH,CT, TX, MA, IL, FL, WA, CA, OK, and OH</td>
+                </tr>
+
+                <tr>
+                    <td>Trader Joes Dark Chocolate Almond Butter Cup</td>
+                    <td>06/21/2021</td>
+                    <td>Class II</td>
+                    <td>Potential undeclared peanut allergen</td>
+                    <td>Voluntary, Firm initiated</td>
+                    <td>United States</td>
+                    <td>Allentown</td>
+                    <td>PA</td>
+                    <td>PA, IL, CT, CA, WA, TX FL</td>
                 </tr>
                 <tr>
-                    <td>Harry and David Rasberry Peanut Spread</td>
-                    <td>Sep/27/2012</td>
-                    <td>Class 1 Fatal</td>
-                    <td>Salmonella Contamination</td>
+                    <td>Earle of Sandwiches Mild Smoked Jalapeno Sub</td>
+                    <td>09/16/2021</td>
+                    <td>Class I</td>
+                    <td>Sandwiches may contain undeclared soy and egg</td>
                     <td>Voluntry, Firm Initiated</td>
-                    <td>US</td>
-                    <td>Medford</td>
-                    <td>OR</td>
-                    <td>Nationwide, Canada</td>
-                </tr>
-                <tr>
-                    <td>Harry and David Rasberry Peanut Spread</td>
-                    <td>Sep/27/2012</td>
-                    <td>Class 1 Fatal</td>
-                    <td>Salmonella Contamination</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>US</td>
-                    <td>Medford</td>
-                    <td>OR</td>
-                    <td>Nationwide, Canada</td>
+                    <td>United States</td>
+                    <td>Willernie</td>
+                    <td>MN</td>
+                    <td>MN, UT, WA</td>
                 </tr>
             </table>
             <p style="margin:0px; color:black">
-                Output table on Food Recalls obtained by FDA API
+                Output table on FOOD Recalls obtained by FDA API
             </p>
 
         </section>
 
         <section id="drug">
-            <h1>Drug</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <div>
+                <select name="country" id="country">
+                    <option value="select">Select Country</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <select name="city" id="city">
+                    <option value="select">Select City</option>
+                    <option value="tampa">Tampa</option>
+                    <option value="boston">Boston</option>
+                    <option value="chicago">Chicago</option>
+                </select>
+                <select name="yearfrom" id="yearfrom">
+                    <option value="select">Select Year From</option>
+                    <option value="yf1">2019</option>
+                    <option value="yf2">2020</option>
+                    <option value="yf3">2021</option>
+                </select>
+                <select name="yearTo" id="yearTo">
+                    <option value="select">Select Year To</option>
+                    <option value="yt1">2019</option>
+                    <option value="yt2">2020</option>
+                    <option value="yt3">2021</option>
+                </select>
+            </div>
+            <table class="drugTable">
+                <tr>
+                    <th>Product</th>
+                    <th>Recall Initiation Date</th>
+                    <th>Classification</th>
+                    <th>Reason for Recall</th>
+                    <th>Voluntry or Mandated Recall</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Distribution Coverage</th>
+                </tr>
 
+                <tr>
+                    <td>Firvanq</td>
+                    <td>10/13/2021</td>
+                    <td>Class I</td>
+                    <td>Product Mix-up: Incorrect diluent component included in the kitn</td>
+                    <td>Voluntary, Firm Initiated</td>
+                    <td>United States</td>
+                    <td>Wilmington</td>
+                    <td>MA</td>
+                    <td>Nationwide</td>
+                </tr>
+                <tr>
+                    <td>fruit chew stripsN</td>
+                    <td>07/16/2021</td>
+                    <td>Class I</td>
+                    <td>Marketed Without an Approved NDA/ANDA</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>United States</td>
+                    <td>Tucson</td>
+                    <td>AZ</td>
+                    <td>Nationwide</td>
+                </tr>
+                <tr>
+                    <td>Maximum Strength Acid Reducer, Ranitidine tablets</td>
+                    <td>10/23/2019</td>
+                    <td>Class II</td>
+                    <td>CGMP Deviation; Possible contamination with impurity N-nitrosodimethylamine.</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>United States</td>
+                    <td>Allegan</td>
+                    <td>MI</td>
+                    <td>Nationwide</td>
+                </tr>
+                <tr>
+                    <td>Artesunate for Injection</td>
+                    <td>09/27/2021</td>
+                    <td>Class II</td>
+                    <td>Lack of Assurance of Sterility:Air filter failed post integrity test</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>United States</td>
+                    <td>Frederick</td>
+                    <td>MD</td>
+                    <td>Nationwide</td>
+                </tr>
+            </table>
+            <p style="margin:0px; color:black">
+                Output table on DRUG Recalls obtained by FDA API
             </p>
+
         </section>
 
         <section id="about">
