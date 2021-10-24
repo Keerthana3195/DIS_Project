@@ -1,5 +1,4 @@
-﻿
-*{
+﻿*{
     margin:0;
     padding:0;
 }
@@ -9,8 +8,8 @@ body{
     color:#fff;
     line-height:1.6;
     height:100vh;
-
 }
+
 .container_index {
     width: 100%;
     height: 100%;
@@ -19,7 +18,7 @@ body{
 }
 
 .tabs {
-    position: inherit;
+    position: fixed;
     top: 0;
     z-index: 1;
     display: flex;
@@ -68,28 +67,36 @@ section p{
 }
     /* Section Images */
     section#home {
-        background-image: url("../img/food3.png");
+        background-image: url("../img/food_back.jpg");
         background-repeat: no-repeat, repeat;
         background-size: cover;
+        color: #CC0500;
+        font-style: italic;
         /*background: url('https://source.unsplash.com/bZZp1PmHI0E/1600x900') no-repeat center center/cover;*/
     }
 
     section#about {
-        background-image: url("../img/food3.png");
+        background-image: url("../img/food_back.jpg");
         background-repeat: no-repeat, repeat;
         background-size: cover;
+        color: #CC0500;
+        font-style: italic;
     }
 
     section#food {
-        background-image: url("../img/food3.png");
+        background-image: url("../img/food_back.jpg");
         background-repeat: no-repeat, repeat;
         background-size: cover;
+        color: #CC0500;
+        font-style: italic;
     }
 
     section#drug {
-        background-image: url("../img/food3.png");
+        background-image: url("../img/food_back.jpg");
         background-repeat: no-repeat, repeat;
         background-size: cover;
+        color: #CC0500;
+        font-style: italic;
     }
 
 table {
