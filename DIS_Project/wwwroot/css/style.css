@@ -47,7 +47,7 @@ body{
                 .tabs ul li a:hover {
                     color: skyblue;
                 }
-section{
+section {
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -68,27 +68,28 @@ section p{
 }
     /* Section Images */
     section#home {
-        background: url('https://source.unsplash.com/bZZp1PmHI0E/1600x900') no-repeat 
-            center center/cover;
-        
+        background-image: url("../img/food3.png");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        /*background: url('https://source.unsplash.com/bZZp1PmHI0E/1600x900') no-repeat center center/cover;*/
     }
 
     section#about {
-        background: url('https://source.unsplash.com/VRxo0yY-gyM/1600x900') no-repeat 
-            center center/cover;
-        
+        background-image: url("../img/food3.png");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
     }
 
     section#food {
-        background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat 
-            center center/cover;
-        
+        background-image: url("../img/food3.png");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
     }
 
     section#drug {
-        background: url('https://source.unsplash.com/2aAHlfDOhJM/1600x900') no-repeat 
-            center center/cover;
-        
+        background-image: url("../img/food3.png");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
     }
 
 table {
