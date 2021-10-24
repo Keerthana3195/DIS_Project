@@ -22,7 +22,7 @@ body{
     top: 0;
     z-index: 1;
     display: flex;
-    width: 100%;
+    width: 75%;
     height: 60px;
     background: rgba(0,0,0,0.7);
 }
@@ -99,10 +99,23 @@ section p{
         font-style: italic;
     }
 
+select {
+    margin:12.5px;
+    height: 30px;
+    border-radius:7px;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
+    margin: 80px;
+    overflow-y: scroll;
+    display: block;
+
+    border: solid black 1px;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
 }
 
 td{
@@ -114,4 +127,7 @@ td{
 th {
     background-color: white;
     color: black;
+    border: black;
+    border-style: groove;
+    border-radius: 10 px;
 }
