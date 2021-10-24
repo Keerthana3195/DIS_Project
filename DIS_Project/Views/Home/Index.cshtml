@@ -13,13 +13,13 @@
         <nav class="aishwarya">
             <ul>
                 <li><a href="#home">HOME</a></li>
+                <li><a href="#food">Food</a></li>
+                <li><a href="#drug">Drug</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="#contact">Contact Us</a></li>
             </ul>
         </nav>
         <section id="home">
-            <h1> Drug</h1>
+            <h1> Home</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -31,7 +31,7 @@
             </p>
         </section>
         <section id="about">
-            <h1>Welcome To About</h1>
+            <h1>About</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -48,8 +48,8 @@
 
             </p>
         </section>
-        <section id="contact">
-            <h1>ContactUs</h1>
+        <section id="drug">
+            <h1>Drug</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -60,17 +60,83 @@
 
             </p>
         </section>
-        <section id="service">
-            <h1>Welcome Service</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <section id="food">
+            <h1>Food</h1>
+            <div>
+                <select name="country" id="country">
+                    <option value="select">Select Country</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <select name="city" id="city">
+                    <option value="select">Select City</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <select name="yearfrom" id="yearfrom">
+                    <option value="select">Select Year From</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <select name="yearTo" id="yearTo">
+                    <option value="select">Select Year To</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
 
-            </p>
+                <table class="foodTable">
+                    <tr>
+                        <th>Product</th>
+                        <th>Recall Initiation Date</th>
+                        <th>Classification</th>
+                        <th>Reason for Recall</th>
+                        <th>Voluntry or Mandated Recall</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Distribution Coverage</th>
+                    </tr>
+
+                    <tr>
+                        <td>Diced Onions</td>
+                        <td>Jul/26/2012</td>
+                        <td>Class 1 Fatal</td>
+                        <td>Listeria Monocytozenes Contamination</td>
+                        <td>Mandated by FDA</td>
+                        <td>US</td>
+                        <td>Boston</td>
+                        <td>MA</td>
+                        <td>MA, ME, RI, NH, CT, NY, NJ</td>
+                    </tr>
+                    <tr>
+                        <td>Soft Tofu</td>
+                        <td>Aug/31/2012</td>
+                        <td>Class 1 Fatal</td>
+                        <td>Listeria Monocytozenes Contamination</td>
+                        <td>Voluntry, Firm Initiated</td>
+                        <td>US</td>
+                        <td>Newark</td>
+                        <td>NJ</td>
+                        <td>Nationwide</td>
+                    </tr>
+                    <tr>
+                        <td>Harry and David Rasberry Peanut Spread</td>
+                        <td>Sep/27/2012</td>
+                        <td>Class 1 Fatal</td>
+                        <td>Salmonella Contamination</td>
+                        <td>Voluntry, Firm Initiated</td>
+                        <td>US</td>
+                        <td>Medford</td>
+                        <td>OR</td>
+                        <td>Nationwide, Canada</td>
+                    </tr>
+                </table>
+            </div>
+            
         </section>
 
     </div>
