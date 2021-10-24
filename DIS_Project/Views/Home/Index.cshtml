@@ -9,17 +9,122 @@
 
 </head>
 <body>
+    <nav class="tabs">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#food">Food</a></li>
+            <li><a href="#drug">Drug</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
     <div class="container_index">
-        <nav class="tabs">
-            <ul>
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#food">Food</a></li>
-                <li><a href="#drug">Drug</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </nav>
         <section id="home">
-            <h1> Home</h1>
+            <h1 style="margin:20px;"> Home</h1>
+            
+            <p>
+               
+                A food or drug recall occurs when a company removes a product from the market because of the possibility that the food may be contaminated or the drug causes severe side effects. When an FDA-regulated product is either defective or potentially harmful, recalling that product i.e removing it from the market or correcting the problem is the most effective means for protecting the public.
+                Recalls afford equal consumer protection but generally are more efficient and timely than formal administrative or civil actions, especially when the product has been widely distributed.
+                Our website shows recalls of both foods and drugs to promote better consumer awareness and social welfare.
+
+
+
+            </p>
+        </section>
+
+        <section id="food">
+            <div>
+                <select name="country" id="country">
+                    <option value="select">Select Country</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <select name="city" id="city">
+                    <option value="select">Select City</option>
+                    <option value="tampa">Tampa</option>
+                    <option value="boston">Boston</option>
+                    <option value="chicago">Chicago</option>
+                </select>
+                <select name="yearfrom" id="yearfrom">
+                    <option value="select">Select Year From</option>
+                    <option value="yf1">2019</option>
+                    <option value="yf2">2020</option>
+                    <option value="yf3">2021</option>
+                </select>
+                <select name="yearTo" id="yearTo">
+                    <option value="select">Select Year To</option>
+                    <option value="yt1">2019</option>
+                    <option value="yt2">2020</option>
+                    <option value="yt3">2021</option>
+                </select>
+            </div>
+            <table class="foodTable">
+                <tr>
+                    <th>Product</th>
+                    <th>Recall Initiation Date</th>
+                    <th>Classification</th>
+                    <th>Reason for Recall</th>
+                    <th>Voluntry or Mandated Recall</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Distribution Coverage</th>
+                </tr>
+
+                <tr>
+                    <td>Diced Onions</td>
+                    <td>Jul/26/2012</td>
+                    <td>Class 1 Fatal</td>
+                    <td>Listeria Monocytozenes Contamination</td>
+                    <td>Mandated by FDA</td>
+                    <td>US</td>
+                    <td>Boston</td>
+                    <td>MA</td>
+                    <td>MA, ME, RI, NH, CT, NY, NJ</td>
+                </tr>
+                <tr>
+                    <td>Soft Tofu</td>
+                    <td>Aug/31/2012</td>
+                    <td>Class 1 Fatal</td>
+                    <td>Listeria Monocytozenes Contamination</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>US</td>
+                    <td>Newark</td>
+                    <td>NJ</td>
+                    <td>Nationwide</td>
+                </tr>
+                <tr>
+                    <td>Harry and David Rasberry Peanut Spread</td>
+                    <td>Sep/27/2012</td>
+                    <td>Class 1 Fatal</td>
+                    <td>Salmonella Contamination</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>US</td>
+                    <td>Medford</td>
+                    <td>OR</td>
+                    <td>Nationwide, Canada</td>
+                </tr>
+                <tr>
+                    <td>Harry and David Rasberry Peanut Spread</td>
+                    <td>Sep/27/2012</td>
+                    <td>Class 1 Fatal</td>
+                    <td>Salmonella Contamination</td>
+                    <td>Voluntry, Firm Initiated</td>
+                    <td>US</td>
+                    <td>Medford</td>
+                    <td>OR</td>
+                    <td>Nationwide, Canada</td>
+                </tr>
+            </table>
+            <p style="margin:0px; color:black">
+                Output table on Food Recalls obtained by FDA API
+            </p>
+
+        </section>
+
+        <section id="drug">
+            <h1>Drug</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -30,6 +135,7 @@
 
             </p>
         </section>
+
         <section id="about">
             <h1>About</h1>
             <p>
@@ -47,96 +153,6 @@
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
 
             </p>
-        </section>
-        <section id="drug">
-            <h1>Drug</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-            </p>
-        </section>
-        <section id="food">
-            <h1>Food</h1>
-            <div>
-                <select name="country" id="country">
-                    <option value="select">Select Country</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
-                </select>
-                <select name="city" id="city">
-                    <option value="select">Select City</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
-                </select>
-                <select name="yearfrom" id="yearfrom">
-                    <option value="select">Select Year From</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
-                </select>
-                <select name="yearTo" id="yearTo">
-                    <option value="select">Select Year To</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
-                </select>
-
-                <table class="foodTable">
-                    <tr>
-                        <th>Product</th>
-                        <th>Recall Initiation Date</th>
-                        <th>Classification</th>
-                        <th>Reason for Recall</th>
-                        <th>Voluntry or Mandated Recall</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Distribution Coverage</th>
-                    </tr>
-
-                    <tr>
-                        <td>Diced Onions</td>
-                        <td>Jul/26/2012</td>
-                        <td>Class 1 Fatal</td>
-                        <td>Listeria Monocytozenes Contamination</td>
-                        <td>Mandated by FDA</td>
-                        <td>US</td>
-                        <td>Boston</td>
-                        <td>MA</td>
-                        <td>MA, ME, RI, NH, CT, NY, NJ</td>
-                    </tr>
-                    <tr>
-                        <td>Soft Tofu</td>
-                        <td>Aug/31/2012</td>
-                        <td>Class 1 Fatal</td>
-                        <td>Listeria Monocytozenes Contamination</td>
-                        <td>Voluntry, Firm Initiated</td>
-                        <td>US</td>
-                        <td>Newark</td>
-                        <td>NJ</td>
-                        <td>Nationwide</td>
-                    </tr>
-                    <tr>
-                        <td>Harry and David Rasberry Peanut Spread</td>
-                        <td>Sep/27/2012</td>
-                        <td>Class 1 Fatal</td>
-                        <td>Salmonella Contamination</td>
-                        <td>Voluntry, Firm Initiated</td>
-                        <td>US</td>
-                        <td>Medford</td>
-                        <td>OR</td>
-                        <td>Nationwide, Canada</td>
-                    </tr>
-                </table>
-            </div>
-            
         </section>
 
     </div>
