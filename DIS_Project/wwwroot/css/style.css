@@ -19,11 +19,11 @@ body{
 }
 
 .tabs {
-    position: inherit;
+    position: fixed;
     top: 0;
     z-index: 1;
     display: flex;
-    width: 100%;
+    width: 75%;
     height: 60px;
     background: rgba(0,0,0,0.7);
 }
