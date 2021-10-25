@@ -98,6 +98,21 @@ section p{
         font-style: italic;
     }
 
+    section#chart {
+        background-image: url("../img/food_back.jpg");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        color: #CC0500;
+        font-style: italic;
+    }
+
+    section#dataModel {
+        background-image: url("../img/food_back.jpg");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        color: #CC0500;
+        font-style: italic;
+    }
 select {
     margin: 12.5px;
     height: 30px;
@@ -134,4 +149,18 @@ th {
     border: black;
     border-style: groove;
     border-radius: 10 px;
+}
+
+/*media queries */
+@media screen and (max-width:900px) {
+    table {
+        height: 300px
+    }
+
+    .home-para {
+        overflow: auto
+    }
+    .chart {
+        width: 80%
+    }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Smooth Scroll Landing</title>
-    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
 </head>
 <body>
@@ -14,14 +14,17 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#food">Food</a></li>
             <li><a href="#drug">Drug</a></li>
+            <li><a href="#chart">Chart</a></li>
+            <li><a href="#dataModel">Data Model</a></li>
             <li><a href="#about">About</a></li>
         </ul>
     </nav>
     <div class="container_index">
+
         <section id="home">
             <h1 style="margin:20px;"> Home</h1>
-            
-            <p style="width:80%">               
+
+            <p style="width:80%" class="home-para">
                 A food or drug recall occurs when a company removes a product from the market because of the possibility that the food may be contaminated or the drug causes severe side effects. When an FDA-regulated product is either defective or potentially harmful, recalling that product i.e removing it from the market or correcting the problem is the most effective means for protecting the public.
                 Recalls afford equal consumer protection but generally are more efficient and timely than formal administrative or civil actions, especially when the product has been widely distributed.
                 Our website shows recalls of both foods and drugs to promote better consumer awareness and social welfare.
@@ -212,8 +215,20 @@
 
         </section>
 
+        <section id="chart">
+            <img style="border-radius:0%" class="chart" src="~/img/chart.PNG" />
+            &nbsp;
+            <p>Date that the FDA issued the enforcement report for the product recall.</p>
+        </section>
+
+        <section id="dataModel">
+            <img style="border-radius:0%" class="chart" src="~/img/dataModel.png" />
+            &nbsp;
+            <p>Data Model</p>
+        </section>
+
         <section id="about">
-            
+
             <style>
                 * {
                     box-sizing: border-box;
@@ -221,6 +236,8 @@
 
                 .row {
                     display: flex;
+                    height: 500px;
+                    overflow-y: auto;
                 }
                 /* Create three equal columns next to each other */
                 .column {
@@ -228,8 +245,6 @@
                     padding: 20px;
                     color: #CC0500;
                 }
-
-
 
                 .aboutus {
                     color: #CC0500;
@@ -267,7 +282,6 @@
                 img {
                     border-radius: 50%;
                 }
-
             </style>
 
 
@@ -275,11 +289,11 @@
             <div class="body">
 
                 <div class="aboutus">
-                    
+
                     <p style="margin:0">
                         <br /><br /><br /><br/>Introducing our amazing team!
                     </p>
-                    
+
 
                 </div>
 
