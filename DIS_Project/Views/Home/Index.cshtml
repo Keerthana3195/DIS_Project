@@ -48,28 +48,39 @@
         <section id="food">
             <div>
                 <select name="country" id="country">
-                    <option value="select">Select Country</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
+                    @{
+                        foreach(var country in Model.Countries)
+                        {
+                            <option>@country</option>
+                        }
+                    }
                 </select>
                 <select name="city" id="city">
-                    <option value="select">Select City</option>
-                    <option value="tampa">Tampa</option>
-                    <option value="boston">Boston</option>
-                    <option value="chicago">Chicago</option>
+                    @{
+                        
+                        foreach (var city in Model.City)
+                        {
+                            <option>@city</option>
+                        }
+                    }
                 </select>
                 <select name="yearfrom" id="yearfrom">
-                    <option value="select">Select Year From</option>
-                    <option value="yf1">2019</option>
-                    <option value="yf2">2020</option>
-                    <option value="yf3">2021</option>
+                    @{
+
+                        foreach (var date in Model.RecallInitDate)
+                        {
+                            <option>@date</option>
+                        }
+                    }
                 </select>
                 <select name="yearTo" id="yearTo">
-                    <option value="select">Select Year To</option>
-                    <option value="yt1">2019</option>
-                    <option value="yt2">2020</option>
-                    <option value="yt3">2021</option>
+                    @{
+
+                        foreach (var date in Model.RecallInitDate)
+                        {
+                            <option>@date</option>
+                        }
+                    }
                 </select>
             </div>
             <table class="foodTable">
@@ -94,7 +105,7 @@
                         if (Model != null)
                         {
 
-                            foreach (var Data in Model)
+                            foreach (var Data in Model.FoodList)
                             {
                                 <tr>
                                     <td>@Data.Product</td>

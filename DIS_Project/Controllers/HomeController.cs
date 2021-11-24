@@ -16,7 +16,12 @@ namespace DIS_Project.Controllers
         SqlCommand command = new SqlCommand();
         SqlConnection connection = new SqlConnection();
         SqlDataReader dr;
+        
+        
         List<Food> food = new List<Food>();
+        List<string> countries = new List<string>();
+        List<string> city = new List<string>();
+        List<string> recallDate = new List<string>();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -28,12 +33,19 @@ namespace DIS_Project.Controllers
         public IActionResult Index()
         {
             FetchFoodData();
-            return View(food);
+            AllData obj = new AllData{ 
+                FoodList = food,
+                Countries = countries.Distinct().ToList(),
+                City = city.Distinct().ToList(),
+                RecallInitDate = recallDate.Distinct().ToList()
+            };
+            return View(obj);
         }
         private void FetchFoodData()
         {
             try
             {
+                var count = 0;
                 connection.Open();
                 command.Connection = connection;
                 //command.CommandText = "SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[reason_for_recall],[recall_initiation_date],[Product] FROM [Food_Drug].[dbo].[Food$]"; ;
@@ -41,18 +53,25 @@ namespace DIS_Project.Controllers
                 dr = command.ExecuteReader();
                 while (dr.Read())
                 {
+                    //Debug.WriteLine(DateTime.ParseExact(dr["recall_initiation_date"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat));
+                    //DateTime date = DateTime.ParseExact(dr["recall_initiation_date"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
                     food.Add(new Food() { Product = dr["Product"].ToString()
-                        ,Recall = dr["recall_initiation_date"].ToString(),
-                        Classification = dr["classification"].ToString(),
+                        ,Recall = dr["recall_initiation_date"].ToString().Substring(0, 4)
+                        ,Classification = dr["classification"].ToString(),
                         Reason = dr["reason_for_recall"].ToString(),
                         Mandate_Recall = dr["voluntary_mandated"].ToString(),
                         Country = dr["country"].ToString(),
                         City = dr["city"].ToString(),
                         State = dr["state"].ToString(),
                         Distribution = dr["distribution_pattern"].ToString()
-
                     });
+                    countries.Add(dr["country"].ToString());
+                    city.Add(dr["city"].ToString());
+                    recallDate.Add(dr["recall_initiation_date"].ToString().Substring(0, 4));
+
+
                 }
+                Debug.WriteLine(count);
                 connection.Close();
             }
             catch(Exception)
