@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "Food And Drug";
+    
+    string[] TableHeaders = new string[] {"Product"
+        ,"Recall initiation date"
+        ,"Classification"
+        ,"Reason for recall"
+        ,"Voluntary or Mandated"
+        ,"Country"
+        ,"City"
+        ,"State"
+        ,"Distribution"};
+}
+
+<!DOCTYPE html>
 <html lang=" = " en">
 <head>
     <meta charset="utf-8">
@@ -59,64 +73,48 @@
                 </select>
             </div>
             <table class="foodTable">
-                <tr>
-                    <th>Product</th>
-                    <th>Recall Initiation Date</th>
-                    <th>Classification</th>
-                    <th>Reason for Recall</th>
-                    <th>Voluntry or Mandated Recall</th>
-                    <th>Country</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Distribution Coverage</th>
-                </tr>
 
-                <tr>
-                    <td>Kroger Kale Bag</td>
-                    <td>09/15/2021</td>
-                    <td>Class I</td>
-                    <td>Potential contamination with Listeria Monocytogenes</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Cincinnati</td>
-                    <td>OH</td>
-                    <td>AL, GA, MI, OH, SC, TN, WV</td>
-                </tr>
+                <thead>
+                    <tr>
+                        @{
+                            foreach (var head in TableHeaders)
+                            {
+                                <th>
+                                    @head
+                                </th>
+                            }
+                        }
 
-                <tr>
-                    <td>Mr. Nut brand Dried Oleaster</td>
-                    <td>09/20/2021</td>
-                    <td>Class III</td>
-                    <td>Undeclared sulfites</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Kearny</td>
-                    <td>NJ</td>
-                    <td>GA, NJ, PA, VA, NC, NY, MD, TN, OH,CT, TX, MA, IL, FL, WA, CA, OK, and OH</td>
-                </tr>
+                    </tr>
+                </thead>
+                
 
-                <tr>
-                    <td>Trader Joes Dark Chocolate Almond Butter Cup</td>
-                    <td>06/21/2021</td>
-                    <td>Class II</td>
-                    <td>Potential undeclared peanut allergen</td>
-                    <td>Voluntary, Firm initiated</td>
-                    <td>United States</td>
-                    <td>Allentown</td>
-                    <td>PA</td>
-                    <td>PA, IL, CT, CA, WA, TX FL</td>
-                </tr>
-                <tr>
-                    <td>Earle of Sandwiches Mild Smoked Jalapeno Sub</td>
-                    <td>09/16/2021</td>
-                    <td>Class I</td>
-                    <td>Sandwiches may contain undeclared soy and egg</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Willernie</td>
-                    <td>MN</td>
-                    <td>MN, UT, WA</td>
-                </tr>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+
+                            foreach (var Data in Model)
+                            {
+                                <tr>
+                                    <td>@Data.Product</td>
+                                    <td>@Data.Recall</td>
+                                    <td>@Data.Classification</td>
+                                    <td>@Data.Reason</td>
+                                    <td>@Data.Mandate_Recall</td>
+                                    <td>@Data.Country</td>
+                                    <td>@Data.City</td>
+                                    <td>@Data.State</td>
+                                    <td>@Data.Distribution</td>
+                                </tr>
+                            }
+
+
+                        }
+
+                    }
+                </tbody>
+
             </table>
             <p style="margin:0px; color:black">
                 Output table on FOOD Recalls obtained by FDA API
