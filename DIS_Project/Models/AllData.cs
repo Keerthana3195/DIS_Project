@@ -11,6 +11,6 @@ namespace DIS_Project.Models
         public List<string> Countries { get; set; }
         public List<string> City { get; set; }
         public List<string> RecallInitDate { get; set; }
-        
+        public string SelectedCity { get; set; }
     }
 }

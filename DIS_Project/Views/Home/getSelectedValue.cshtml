@@ -1,4 +1,9 @@
 ﻿@{
+    ViewData["Title"] = "Food Selection";
+}
+
+
+@{
     ViewData["Title"] = "Food And Drug";
 
     string[] TableHeaders = new string[] {"Product"
@@ -10,7 +15,7 @@
         ,"City"
         ,"State"
         ,"Distribution"};
-    
+
 }
 
 <!DOCTYPE html>
@@ -50,15 +55,25 @@
             <div>
 
                 <h5> Select a state to filter:</h5>
-                @using (Html.BeginForm("getSelectedValue", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+                @*@using (Html.BeginForm("getSelectedValue", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
+            @Html.DropDownList("City", ViewBag.cityList, null, "Select City")
+            @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
+            @Html.DropDownList("RecallToInit", ViewBag.dateList, null, "Date")
+            <input type="submit" value="Go" />
+        }*@
+                @using (Html.BeginForm("getSelectedValue", "Home", FormMethod.Post, new { link = "getSelectedValue#food" }))
                 {
                     @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
                     @Html.DropDownList("City", ViewBag.cityList, null, "Select City")
                     @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
                     @Html.DropDownList("RecallToInit", ViewBag.dateList, null, "Date")
-                    <input  type="submit" value="Go" />
+            
+                <input type="submit" value="Go" />
                 }
-            </div>
+</div>
             <table class="foodTable">
                 <thead>
                     <tr>
@@ -102,22 +117,37 @@
             <p style="margin:0px; color:black">
                 Output table on FOOD Recalls obtained by FDA API
             </p>
-            
+
+
+
         </section>
 
         <section id="drug">
             <div>
-               
-                    <h5> Select a state to filter:</h5>
-                    @using (Html.BeginForm("getSelectedValue", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
-                        @Html.DropDownList("City", ViewBag.cityList, null, "Select City")
-                        @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
-                        @Html.DropDownList("RecallToInit", ViewBag.dateList, null, "Date")
-                        <input type="submit" value="Go" />
-                    }
-                
+                <select name="country" id="country">
+                    <option value="select">Select Country</option>
+                    <option value="india">India</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <select name="city" id="city">
+                    <option value="select">Select City</option>
+                    <option value="tampa">Tampa</option>
+                    <option value="boston">Boston</option>
+                    <option value="chicago">Chicago</option>
+                </select>
+                <select name="yearfrom" id="yearfrom">
+                    <option value="select">Select Year From</option>
+                    <option value="yf1">2019</option>
+                    <option value="yf2">2020</option>
+                    <option value="yf3">2021</option>
+                </select>
+                <select name="yearTo" id="yearTo">
+                    <option value="select">Select Year To</option>
+                    <option value="yt1">2019</option>
+                    <option value="yt2">2020</option>
+                    <option value="yt3">2021</option>
+                </select>
             </div>
             <table class="drugTable">
                 <tr>
@@ -273,7 +303,7 @@
                 <div class="aboutus">
 
                     <p style="margin:0">
-                        <br /><br /><br /><br/>Introducing our amazing team!
+                        <br /><br /><br /><br />Introducing our amazing team!
                     </p>
 
 
