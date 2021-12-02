@@ -139,19 +139,19 @@ namespace DIS_Project.Controllers
             connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection.Open();
             command.Connection = connection;
-            string initialQuery = $"SELECT TOP(1000)[Product],[recall_initiation_date],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM[FoodDrugDb].[dbo].[Food$]";
-            
+            string initialQuery = $"SELECT TOP(1000)[Product],[recall_year],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM[FoodDrugDb].[dbo].[Fu3$]";
+            command.CommandText = initialQuery;
             if (recallYear == "Select" && selectedCity != "Select")
             {
                 command.CommandText = initialQuery + $" Where city like '{selectedCity}'";
             }
             if (selectedCity == "Select" && recallYear != "Select")
             {
-                command.CommandText = initialQuery + $" Where substring([recall_initiation_date],1,4) like '{recallYear}'";
+                command.CommandText = initialQuery + $" Where recall_year like '{recallYear}'";
             }
             if (selectedCity != "Select" && recallYear != "Select")
             {
-                command.CommandText = initialQuery + $" Where city like '{selectedCity}' and substring([recall_initiation_date],1,4) like '{recallYear}'";
+                command.CommandText = initialQuery + $" Where city like '{selectedCity}' and recall_year like '{recallYear}'";
             }
             dr = command.ExecuteReader();
             while (dr.Read())
@@ -160,7 +160,7 @@ namespace DIS_Project.Controllers
                 {
                     Product = dr["Product"].ToString()
                     ,
-                    Recall = dr["recall_initiation_date"].ToString().Substring(0, 4)
+                    Recall = dr["recall_year"].ToString().Substring(0, 4)
                     ,
                     Classification = dr["classification"].ToString(),
                     Reason = dr["reason_for_recall"].ToString(),
@@ -181,7 +181,7 @@ namespace DIS_Project.Controllers
             connection.Open();
             command.Connection = connection;
             string initialQuery = $"SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date] FROM[FoodDrugDb].[dbo].[Drug$]";
-            
+            command.CommandText = initialQuery;
             if (recallYear == "Select" && cityDrug != "Select")
             {
                 command.CommandText = initialQuery + $" Where city like '{cityDrug}'";
@@ -231,13 +231,13 @@ namespace DIS_Project.Controllers
                 connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT TOP(1000)[Product],[recall_initiation_date],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM [FoodDrugDb].[dbo].[Food$]";
+                command.CommandText = "SELECT TOP(1000)[Product],[recall_year],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM [FoodDrugDb].[dbo].[Fu3$]";
                 dr = command.ExecuteReader();
                 while (dr.Read())
                 {
                     food.Add(new Food() { 
                         Product = dr["Product"].ToString()
-                        ,Recall = dr["recall_initiation_date"].ToString().Substring(0, 4)
+                        ,Recall = dr["recall_year"].ToString().Substring(0, 4)
                         ,Classification = dr["classification"].ToString(),
                         Reason = dr["reason_for_recall"].ToString(),
                         Mandate_Recall = dr["voluntary_mandated"].ToString(),
@@ -381,7 +381,7 @@ namespace DIS_Project.Controllers
             obj.State = f1.Foodobj.State;
             obj.Mandate_Recall = f1.Foodobj.Mandate_Recall;
 
-            command.CommandText = $"INSERT INTO[FoodDrugDb].[dbo].[Food$] VALUES ('{obj.City}','{obj.State}','{obj.Country}','{obj.Classification}','{obj.Mandate_Recall}','{obj.Distribution}','{obj.Reason}','{obj.Recall}','{obj.Product}','','','','')";
+            command.CommandText = $"INSERT INTO[FoodDrugDb].[dbo].[Fu3$] VALUES ('{obj.City}','{obj.State}','{obj.Country}','{obj.Classification}','{obj.Mandate_Recall}','{obj.Distribution}','{obj.Reason}','NULL','{obj.Product}','{obj.Recall}','NULL','NULL')";
             dr = command.ExecuteReader();
             connection.Close();
             FetchInitialFoodData();

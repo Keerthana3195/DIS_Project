@@ -1,21 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Food Selection";
-}
-
-
+﻿
+@model DIS_Project.Models.AllData
 @{
     ViewData["Title"] = "Food And Drug";
 
     string[] TableHeaders = new string[] {"Product"
-        ,"Recall initiation date"
+        ,"Recall Initiation Year"
         ,"Classification"
         ,"Reason for recall"
         ,"Voluntary or Mandated"
         ,"Country"
         ,"City"
         ,"State"
-        ,"Distribution"};
+        ,"Distribution"
 
+    };
 }
 
 <!DOCTYPE html>
@@ -37,6 +35,7 @@
             <li><a href="#chart">Chart</a></li>
             <li><a href="#dataModel">Data Model</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#create">Create Food Recall</a></li>
         </ul>
     </nav>
     <div class="container_index">
@@ -55,25 +54,20 @@
             <div>
 
                 <h5> Select a state to filter:</h5>
-
-                @*@using (Html.BeginForm("getSelectedValue", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
-            @Html.DropDownList("City", ViewBag.cityList, null, "Select City")
-            @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
-            @Html.DropDownList("RecallToInit", ViewBag.dateList, null, "Date")
-            <input type="submit" value="Go" />
-        }*@
-                @using (Html.BeginForm("getSelectedValue", "Home", FormMethod.Post, new { link = "getSelectedValue#food" }))
+                @using (Html.BeginForm("getSelectedFood", "Home", FormMethod.Post))
                 {
+                    <label>Country: </label>
                     @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
-                    @Html.DropDownList("City", ViewBag.cityList, null, "Select City")
+                    <label>City: </label>
+                    @Html.DropDownList("City", ViewBag.foodCitiesDropdown, null, "Select City")
+                    <label>Recall Year: </label>
                     @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
-                    @Html.DropDownList("RecallToInit", ViewBag.dateList, null, "Date")
-            
-                <input type="submit" value="Go" />
+
+                    <input type="submit" value="Filter" />
                 }
-</div>
+
+
+            </div>
             <table class="foodTable">
                 <thead>
                     <tr>
@@ -118,106 +112,65 @@
                 Output table on FOOD Recalls obtained by FDA API
             </p>
 
-
-
         </section>
 
         <section id="drug">
             <div>
-                <select name="country" id="country">
-                    <option value="select">Select Country</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
-                </select>
-                <select name="city" id="city">
-                    <option value="select">Select City</option>
-                    <option value="tampa">Tampa</option>
-                    <option value="boston">Boston</option>
-                    <option value="chicago">Chicago</option>
-                </select>
-                <select name="yearfrom" id="yearfrom">
-                    <option value="select">Select Year From</option>
-                    <option value="yf1">2019</option>
-                    <option value="yf2">2020</option>
-                    <option value="yf3">2021</option>
-                </select>
-                <select name="yearTo" id="yearTo">
-                    <option value="select">Select Year To</option>
-                    <option value="yt1">2019</option>
-                    <option value="yt2">2020</option>
-                    <option value="yt3">2021</option>
-                </select>
+                <h5> Select a state to filter:</h5>
+                @using (Html.BeginForm("getSelectedDrug", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <label>Country: </label>
+                    @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
+                    <label>City: </label>
+                    @Html.DropDownList("CityD", ViewBag.drugCitiesDropdown, null, "Select City")
+                    <label>Recall Year: </label>
+                    @Html.DropDownList("RecallFromInitD", ViewBag.dateList, null, "Date")
+
+                    <input type="submit" value="Filter" />
+                }
             </div>
             <table class="drugTable">
-                <tr>
-                    <th>Product</th>
-                    <th>Recall Initiation Date</th>
-                    <th>Classification</th>
-                    <th>Reason for Recall</th>
-                    <th>Voluntry or Mandated Recall</th>
-                    <th>Country</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Distribution Coverage</th>
-                </tr>
+                <thead>
+                    <tr>
+                        @{
+                            foreach (var head in TableHeaders)
+                            {
+                                <th>
+                                    @head
+                                </th>
+                            }
+                        }
 
-                <tr>
-                    <td>Firvanq</td>
-                    <td>10/13/2021</td>
-                    <td>Class I</td>
-                    <td>Product Mix-up: Incorrect diluent component included in the kitn</td>
-                    <td>Voluntary, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Wilmington</td>
-                    <td>MA</td>
-                    <td>Nationwide</td>
-                </tr>
-                <tr>
-                    <td>fruit chew stripsN</td>
-                    <td>07/16/2021</td>
-                    <td>Class I</td>
-                    <td>Marketed Without an Approved NDA/ANDA</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Tucson</td>
-                    <td>AZ</td>
-                    <td>Nationwide</td>
-                </tr>
-                <tr>
-                    <td>Maximum Strength Acid Reducer, Ranitidine tablets</td>
-                    <td>10/23/2019</td>
-                    <td>Class II</td>
-                    <td>CGMP Deviation; Possible contamination with impurity N-nitrosodimethylamine.</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Allegan</td>
-                    <td>MI</td>
-                    <td>Nationwide</td>
-                </tr>
-                <tr>
-                    <td>Artesunate for Injection</td>
-                    <td>09/27/2021</td>
-                    <td>Class II</td>
-                    <td>Lack of Assurance of Sterility:Air filter failed post integrity test</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Frederick</td>
-                    <td>MD</td>
-                    <td>Nationwide</td>
-                </tr>
-                <tr>
-                    <td>Maximum Strength Acid Reducer, Cool Mint Ranitidine tablets</td>
-                    <td>11/06/2020</td>
-                    <td>Class II</td>
-                    <td>CGMP Deviation; Possible contamination with impurity N-nitrosodimethylamine</td>
-                    <td>Voluntry, Firm Initiated</td>
-                    <td>United States</td>
-                    <td>Allegan</td>
-                    <td>MI</td>
-                    <td>Nationwide</td>
-                </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
 
+                            foreach (var Data in Model.DrugList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Index", new { data = Data })
+
+                                    </td>
+                                    <td>@Data.ProductDescription</td>
+                                    <td>@Data.RecallInitDate</td>
+                                    <td>@Data.Classification</td>
+                                    <td>@Data.Reason</td>
+                                    <td>@Data.Voluntary_Mandate</td>
+                                    <td>@Data.Country</td>
+                                    <td>@Data.City</td>
+                                    <td>@Data.State</td>
+                                    <td>@Data.Distribution</td>
+                                </tr>
+                            }
+
+                        }
+
+                    }
+                </tbody>
             </table>
             <p style="margin:0px; color:black">
                 Output table on DRUG Recalls obtained by FDA API
@@ -336,9 +289,54 @@
 
             </div>
         </section>
-        <script>
-            var ele = document.getElementById('country');
-        </script>
+        <section id="create">
+            @using (Html.BeginForm("sendDataToDb", "Home", FormMethod.Post))
+            {
+                <div class="container">
+                    <div class="form-group">
+                        <label>Product </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Product);
+                    </div>
+                    <div class="form-group">
+                        <label>Recall </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Recall);
+                    </div>
+                    <div class="form-group">
+                        <label>Classification </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Classification);
+                    </div>
+                    <div class="form-group">
+                        <label>Reason </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Reason);
+                    </div>
+                    <div class="form-group">
+                        <label>Mandate_Recall </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Mandate_Recall);
+                    </div>
+                    <div class="form-group">
+                        <label>Country </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Country);
+                    </div>
+                    <div class="form-group">
+                        <label>City </label>
+                        @Html.TextBoxFor(x => x.Foodobj.City);
+                    </div>
+                    <div class="form-group">
+                        <label>State </label>
+                        @Html.TextBoxFor(x => x.Foodobj.State);
+                    </div>
+                    <div class="form-group">
+                        <label>Distribution </label>
+                        @Html.TextBoxFor(x => x.Foodobj.Distribution);
+                    </div>
+                    <div class=" form-group">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+
+
+            }
+        </section>
     </div>
 
 </body>
