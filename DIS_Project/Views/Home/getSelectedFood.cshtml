@@ -4,7 +4,7 @@
     ViewData["Title"] = "Food And Drug";
 
     string[] TableHeaders = new string[] {"Product"
-        ,"Recall initiation date"
+        ,"Recall Initiation Year"
         ,"Classification"
         ,"Reason for recall"
         ,"Voluntary or Mandated"
@@ -35,6 +35,7 @@
             <li><a href="#chart">Chart</a></li>
             <li><a href="#dataModel">Data Model</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#create">Create Food Recall</a></li>
         </ul>
     </nav>
     <div class="container_index">
@@ -55,59 +56,17 @@
                 <h5> Select a state to filter:</h5>
                 @using (Html.BeginForm("getSelectedFood", "Home", FormMethod.Post))
                 {
-                    @Html.DropDownList("City", ViewBag.foodCitiesDropdown, null, "Select City")
-                    @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
-                    @Html.DropDownList("RecallToInit", ViewBag.dateList, null, "Date")
-                    <input type="submit" value="Go" />
+                <label>Country: </label>
+                @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
+                <label>City: </label>
+                @Html.DropDownList("City", ViewBag.foodCitiesDropdown, null, "Select City")
+                <label>Recall Year: </label>
+                @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
+
+                <input type="submit" value="Filter" />
                 }
 
-                @*@using (Html.BeginForm("sendDataToDb", "Home", FormMethod.Post))
-                        {
-                    <div class="container">
-                        <div class="form-group">
-                            <label>Product </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Product);
-                        </div>
-                        <div class="form-group">
-                            <label>Recall </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Recall);
-                        </div>
-                        <div class="form-group">
-                            <label>Classification </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Classification);
-                        </div>
-                        <div class="form-group">
-                            <label>Reason </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Reason);
-                        </div>
-                        <div class="form-group">
-                            <label>Mandate_Recall </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Mandate_Recall);
-                        </div>
-                        <div class="form-group">
-                            <label>Country </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Country);
-                        </div>
-                        <div class="form-group">
-                            <label>City </label>
-                            @Html.TextBoxFor(x => x.Foodobj.City);
-                        </div>
-                        <div class="form-group">
-                            <label>State </label>
-                            @Html.TextBoxFor(x => x.Foodobj.State);
-                        </div>
-                        <div class="form-group">
-                            <label>Distribution </label>
-                            @Html.TextBoxFor(x => x.Foodobj.Distribution);
-                        </div>
-                        <div class=" form-group">
-                            <button type="submit" class="btn btn-primary">Create</button>
-                        </div>
-                        <input type="submit" value="Create" />
-                    </div>
 
-
-                        }*@
             </div>
             <table class="foodTable">
                 <thead>
@@ -115,9 +74,9 @@
                         @{
                             foreach (var head in TableHeaders)
                             {
-                                <th>
-                                    @head
-                                </th>
+                            <th>
+                                @head
+                            </th>
                             }
                         }
 
@@ -130,17 +89,17 @@
 
                             foreach (var Data in Model.FoodList)
                             {
-                                <tr>
-                                    <td>@Data.Product</td>
-                                    <td>@Data.Recall</td>
-                                    <td>@Data.Classification</td>
-                                    <td>@Data.Reason</td>
-                                    <td>@Data.Mandate_Recall</td>
-                                    <td>@Data.Country</td>
-                                    <td>@Data.City</td>
-                                    <td>@Data.State</td>
-                                    <td>@Data.Distribution</td>
-                                </tr>
+                        <tr>
+                            <td>@Data.Product</td>
+                            <td>@Data.Recall</td>
+                            <td>@Data.Classification</td>
+                            <td>@Data.Reason</td>
+                            <td>@Data.Mandate_Recall</td>
+                            <td>@Data.Country</td>
+                            <td>@Data.City</td>
+                            <td>@Data.State</td>
+                            <td>@Data.Distribution</td>
+                        </tr>
                             }
 
                         }
@@ -160,10 +119,14 @@
                 <h5> Select a state to filter:</h5>
                 @using (Html.BeginForm("getSelectedDrug", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @Html.DropDownList("CityD", ViewBag.drugCitiesDropdown, null, "Select City")
-                    @Html.DropDownList("RecallFromInitD", ViewBag.dateList, null, "Date")
-                    @Html.DropDownList("RecallToInitD", ViewBag.dateList, null, "Date")
-                    <input type="submit" value="Go" />
+                <label>Country: </label>
+                @Html.DropDownList("Country", ViewBag.countryList, null, "Select Country")
+                <label>City: </label>
+                @Html.DropDownList("CityD", ViewBag.drugCitiesDropdown, null, "Select City")
+                <label>Recall Year: </label>
+                @Html.DropDownList("RecallFromInitD", ViewBag.dateList, null, "Date")
+
+                <input type="submit" value="Filter" />
                 }
             </div>
             <table class="drugTable">
@@ -172,9 +135,9 @@
                         @{
                             foreach (var head in TableHeaders)
                             {
-                                <th>
-                                    @head
-                                </th>
+                            <th>
+                                @head
+                            </th>
                             }
                         }
 
@@ -187,17 +150,21 @@
 
                             foreach (var Data in Model.DrugList)
                             {
-                                <tr>
-                                    <td>@Data.ProductDescription</td>
-                                    <td>@Data.RecallInitDate</td>
-                                    <td>@Data.Classification</td>
-                                    <td>@Data.Reason</td>
-                                    <td>@Data.Voluntary_Mandate</td>
-                                    <td>@Data.Country</td>
-                                    <td>@Data.City</td>
-                                    <td>@Data.State</td>
-                                    <td>@Data.Distribution</td>
-                                </tr>
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Delete", "Index", new { data = Data })
+
+                            </td>
+                            <td>@Data.ProductDescription</td>
+                            <td>@Data.RecallInitDate</td>
+                            <td>@Data.Classification</td>
+                            <td>@Data.Reason</td>
+                            <td>@Data.Voluntary_Mandate</td>
+                            <td>@Data.Country</td>
+                            <td>@Data.City</td>
+                            <td>@Data.State</td>
+                            <td>@Data.Distribution</td>
+                        </tr>
                             }
 
                         }
@@ -322,9 +289,54 @@
 
             </div>
         </section>
-        <script>
-            var ele = document.getElementById('country');
-        </script>
+        <section id="create">
+            @using (Html.BeginForm("sendDataToDb", "Home", FormMethod.Post))
+            {
+            <div class="container">
+                <div class="form-group">
+                    <label>Product </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Product);
+                </div>
+                <div class="form-group">
+                    <label>Recall </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Recall);
+                </div>
+                <div class="form-group">
+                    <label>Classification </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Classification);
+                </div>
+                <div class="form-group">
+                    <label>Reason </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Reason);
+                </div>
+                <div class="form-group">
+                    <label>Mandate_Recall </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Mandate_Recall);
+                </div>
+                <div class="form-group">
+                    <label>Country </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Country);
+                </div>
+                <div class="form-group">
+                    <label>City </label>
+                    @Html.TextBoxFor(x => x.Foodobj.City);
+                </div>
+                <div class="form-group">
+                    <label>State </label>
+                    @Html.TextBoxFor(x => x.Foodobj.State);
+                </div>
+                <div class="form-group">
+                    <label>Distribution </label>
+                    @Html.TextBoxFor(x => x.Foodobj.Distribution);
+                </div>
+                <div class=" form-group">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </div>
+
+
+            }
+        </section>
     </div>
 
 </body>

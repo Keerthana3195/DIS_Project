@@ -20,6 +20,7 @@ namespace DIS_Project.Controllers
         List<SelectListItem> foodCitiesDropdown = new List<SelectListItem>();
         List<SelectListItem> drugCitiesDropdown = new List<SelectListItem>();
         List<SelectListItem> recallDate = new List<SelectListItem>();
+        List<SelectListItem> country = new List<SelectListItem>();
         List<SelectListItem> cityItems = new List<SelectListItem>();
         List<SelectListItem> dateItems = new List<SelectListItem>();
         List<Food> food = new List<Food>();
@@ -31,6 +32,7 @@ namespace DIS_Project.Controllers
         
         string[] FoodCities = new string[]
         {
+            "Select",
         "Alexandria",
         "Bayamon",
         "Faribault",
@@ -59,6 +61,7 @@ namespace DIS_Project.Controllers
 
         string[] DrugCities = new string[]
         {
+            "Select",
         "Baltimore",
         "Bridgewater",
         "Burbank",
@@ -78,10 +81,17 @@ namespace DIS_Project.Controllers
         };
         string[] recallYears = new string[]
         {
-            "2010",
-            "2011",
-            "2012"
+            "Select",
+            "2012",
+            "2013",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
         };
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -89,67 +99,15 @@ namespace DIS_Project.Controllers
             _logger = logger;
         }
 
-        //[HttpPost]
-        //public ActionResult sendDataToDb(AllData f1)
-        //{
-            
-        //    Food obj = new Food();
-        //    obj.Product = f1.Foodobj.Product;
-        //    obj.Reason = f1.Foodobj.Reason;
-        //    obj.Recall = f1.Foodobj.Recall;
-        //    obj.State = f1.Foodobj.State;
-        //    obj.Classification = f1.Foodobj.Classification;
-        //    obj.City = f1.Foodobj.City;
-        //    obj.Country = f1.Foodobj.Country;
-        //    obj.Distribution = f1.Foodobj.Distribution;
-        //    obj.State = f1.Foodobj.State;
-
-        //    command.CommandText = $"INSERT INTO[Food].[dbo].[Sheet1$] VALUES ('{obj.City}','{obj.State}','{obj.Country}','{obj.Classification}','{obj.Mandate_Recall}','{obj.Distribution}','{obj.Reason}','{obj.Recall}','{obj.Product}','','','')";
-        //    dr = command.ExecuteReader();
-
-        //    //connection.Close();
-        //    //FetchFoodData();
-        //    AllData obj3 = new AllData
-        //    {
-        //        FoodList = food,
-        //        Countries = countries.Distinct().ToList(),
-        //        City = city.Distinct().ToList(),
-        //        RecallInitDate = recallDate.Distinct().ToList()
-        //    };
-        //    return View(obj3);
-            
-        //}
-        public void getFoodDataAsPerSelection(string selectedCity)
-        {
-            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            connection.Open();
-            command.Connection = connection;
-            command.CommandText = $"SELECT TOP(1000)[Product],[recall_initiation_date],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM[FoodDrugDb].[dbo].[Food$] Where city like '{selectedCity}'";
-            dr = command.ExecuteReader();
-            while (dr.Read())
-            {
-                food.Add(new Food()
-                {
-                    Product = dr["Product"].ToString()
-                    ,Recall = dr["recall_initiation_date"].ToString().Substring(0, 4)
-                    ,Classification = dr["classification"].ToString(),
-                    Reason = dr["reason_for_recall"].ToString(),
-                    Mandate_Recall = dr["voluntary_mandated"].ToString(),
-                    Country = dr["country"].ToString(),
-                    City = dr["city"].ToString(),
-                    State = dr["state"].ToString(),
-                    Distribution = dr["distribution_pattern"].ToString()
-                });
-                
-            }
-            connection.Close();  
-        }
+        
 
         [HttpPost]
         public ActionResult getSelectedFood()
         {
             var selectedCity = Request.Form["City"].ToString(); //this will get selected value
-            getFoodDataAsPerSelection(selectedCity);
+            var recallYear = Request.Form["RecallFromInit"].ToString();
+
+            getFoodDataAsPerSelection(selectedCity, recallYear);
             FetchInitialDrugData();
             AllData d1 = new AllData
             {
@@ -164,8 +122,8 @@ namespace DIS_Project.Controllers
         public ActionResult getSelectedDrug()
         {
             var selectedCity = Request.Form["CityD"].ToString(); //this will get selected value
-            
-            getDrugDataAsPerSelection(selectedCity);
+            var recallYear = Request.Form["RecallFromInitD"].ToString();
+            getDrugDataAsPerSelection(selectedCity, recallYear);
             FetchInitialFoodData();
             AllData obj1 = new AllData
             {
@@ -176,13 +134,66 @@ namespace DIS_Project.Controllers
             return View(obj1);
 
         }
-
-        public void getDrugDataAsPerSelection(string cityDrug)
+        public void getFoodDataAsPerSelection(string selectedCity, string recallYear)
         {
             connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection.Open();
             command.Connection = connection;
-            command.CommandText = $"SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date] FROM[FoodDrugDb].[dbo].[Drug$] Where city like '{cityDrug}'";
+            string initialQuery = $"SELECT TOP(1000)[Product],[recall_initiation_date],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM[FoodDrugDb].[dbo].[Food$]";
+            
+            if (recallYear == "Select" && selectedCity != "Select")
+            {
+                command.CommandText = initialQuery + $" Where city like '{selectedCity}'";
+            }
+            if (selectedCity == "Select" && recallYear != "Select")
+            {
+                command.CommandText = initialQuery + $" Where substring([recall_initiation_date],1,4) like '{recallYear}'";
+            }
+            if (selectedCity != "Select" && recallYear != "Select")
+            {
+                command.CommandText = initialQuery + $" Where city like '{selectedCity}' and substring([recall_initiation_date],1,4) like '{recallYear}'";
+            }
+            dr = command.ExecuteReader();
+            while (dr.Read())
+            {
+                food.Add(new Food()
+                {
+                    Product = dr["Product"].ToString()
+                    ,
+                    Recall = dr["recall_initiation_date"].ToString().Substring(0, 4)
+                    ,
+                    Classification = dr["classification"].ToString(),
+                    Reason = dr["reason_for_recall"].ToString(),
+                    Mandate_Recall = dr["voluntary_mandated"].ToString(),
+                    Country = dr["country"].ToString(),
+                    City = dr["city"].ToString(),
+                    State = dr["state"].ToString(),
+                    Distribution = dr["distribution_pattern"].ToString()
+                });
+
+            }
+            connection.Close();
+        }
+
+        public void getDrugDataAsPerSelection(string cityDrug, string recallYear)
+        {
+            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.Open();
+            command.Connection = connection;
+            string initialQuery = $"SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date] FROM[FoodDrugDb].[dbo].[Drug$]";
+            
+            if (recallYear == "Select" && cityDrug != "Select")
+            {
+                command.CommandText = initialQuery + $" Where city like '{cityDrug}'";
+            }
+            if (cityDrug == "Select" && recallYear != "Select")
+            {
+                command.CommandText = initialQuery + $" Where substring([recall_initiation_date],1,4) like '{recallYear}'";
+            }
+            if (cityDrug != "Select" && recallYear != "Select")
+            {
+                command.CommandText = initialQuery + $" Where city like '{cityDrug}' and substring([recall_initiation_date],1,4) like '{recallYear}'";
+            }
             dr = command.ExecuteReader();
             while (dr.Read())
             {
@@ -323,7 +334,66 @@ namespace DIS_Project.Controllers
                 recallDate.Add(item);
             }
             ViewBag.dateList = recallDate;
+
+            SelectListItem countryItem = new SelectListItem()
+            {
+                Text = "United States",
+                Value = "United States",
+                Selected = true
+            };
+            country.Add(countryItem);
+            ViewBag.countryList = country;
+
+
         }
+        public ActionResult Delete(Drug data)
+        {
+            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.Open();
+            command.Connection = connection;
+            command.CommandText = $"DELETE FROM[FoodDrugDb].[dbo].[Drug$] Where UUID like '{data.UUID}'";
+            dr = command.ExecuteReader();
+            connection.Close();
+            FetchInitialFoodData();
+            FetchInitialDrugData();
+            AllData objDel = new AllData
+            {
+                DrugList = drugs,
+                FoodList = food,
+            };
+            return View(objDel);  
+        }
+        [HttpPost]
+        public ActionResult sendDataToDb(AllData f1)
+        {
+            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.Open();
+            command.Connection = connection;
+            Food obj = new Food();
+            obj.Product = f1.Foodobj.Product;
+            obj.Reason = f1.Foodobj.Reason;
+            obj.Recall = f1.Foodobj.Recall;
+            obj.State = f1.Foodobj.State;
+            obj.Classification = f1.Foodobj.Classification;
+            obj.City = f1.Foodobj.City;
+            obj.Country = f1.Foodobj.Country;
+            obj.Distribution = f1.Foodobj.Distribution;
+            obj.State = f1.Foodobj.State;
+            obj.Mandate_Recall = f1.Foodobj.Mandate_Recall;
+
+            command.CommandText = $"INSERT INTO[FoodDrugDb].[dbo].[Food$] VALUES ('{obj.City}','{obj.State}','{obj.Country}','{obj.Classification}','{obj.Mandate_Recall}','{obj.Distribution}','{obj.Reason}','{obj.Recall}','{obj.Product}','','','','')";
+            dr = command.ExecuteReader();
+            connection.Close();
+            FetchInitialFoodData();
+            FetchInitialDrugData();
+            AllData objCreate = new AllData
+            {
+                DrugList = drugs,
+                FoodList = food,
+            };
+            return View(objCreate);
+        }
+
         public IActionResult Privacy()
         {
             return View();
