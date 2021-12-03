@@ -150,21 +150,30 @@
 
                             foreach (var Data in Model.DrugList)
                             {
-                                        <tr>
-                                            <td>
-                                                @Html.ActionLink("Delete", "Index", new { data = Data })
+                                @using (Html.BeginForm("Delete", "Home", FormMethod.Post, new { data = Data }))
+                                {
+                    <tr>
+                        <td>
+                            <input name="chkPicture" type="checkbox" class="check" value="@Data.City" />
+                            <input type="submit" value="DeleteBhai" />
 
-                                            </td>
-                                            <td>@Data.ProductDescription</td>
-                                            <td>@Data.RecallInitDate</td>
-                                            <td>@Data.Classification</td>
-                                            <td>@Data.Reason</td>
-                                            <td>@Data.Voluntary_Mandate</td>
-                                            <td>@Data.Country</td>
-                                            <td>@Data.City</td>
-                                            <td>@Data.State</td>
-                                            <td>@Data.Distribution</td>
-                                        </tr>
+                          
+
+                        </td>
+                        <td>@Data.ProductDescription</td>
+                        <td>@Data.RecallInitDate</td>
+                        <td>@Data.Classification</td>
+                        <td>@Data.Reason</td>
+                        <td>@Data.Voluntary_Mandate</td>
+                        <td>@Data.Country</td>
+                        <td>@Data.City</td>
+                        <td>@Data.State</td>
+                        <td>@Data.Distribution</td>
+                        
+                    </tr>
+                                    
+                                }
+
                             }
 
                         }

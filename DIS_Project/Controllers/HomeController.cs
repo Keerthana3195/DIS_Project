@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace DIS_Project.Controllers
 {
@@ -93,14 +94,10 @@ namespace DIS_Project.Controllers
         };
 
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-
-        
-
         [HttpPost]
         public ActionResult getSelectedFood()
         {
@@ -284,6 +281,7 @@ namespace DIS_Project.Controllers
                         State = dr["state"].ToString()
                         ,
                         Distribution = dr["distribution_pattern"].ToString()
+
                     });
 
                 }
@@ -346,8 +344,10 @@ namespace DIS_Project.Controllers
 
 
         }
+        [HttpPost]
         public ActionResult Delete(Drug data)
         {
+            var selected = Request.Form["chkPicture"];
             connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection.Open();
             command.Connection = connection;
