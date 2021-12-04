@@ -12,9 +12,7 @@ namespace DIS_Project.Models
         public string Classification { get; set; }
         public string Reason { get; set; }
         public string Mandate_Recall { get; set; }
-
         public string Country { get; set; }
-
         public string City { get; set; }
         public string State { get; set; }
         public string Distribution { get; set; }

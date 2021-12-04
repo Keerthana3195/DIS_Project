@@ -12,12 +12,10 @@ namespace DIS_Project.Models
         public string Classification { get; set; }
         public string Reason { get; set; }
         public string Voluntary_Mandate { get; set; }
-
         public string Country { get; set; }
-
         public string City { get; set; }
         public string State { get; set; }
         public string Distribution { get; set; }
-        public int UUID { get; set; }
+        public string UUID { get; set; }
     }
 }

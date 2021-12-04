@@ -26,7 +26,6 @@ namespace DIS_Project.Controllers
         List<SelectListItem> dateItems = new List<SelectListItem>();
         List<Food> food = new List<Food>();
         List<Drug> drugs = new List<Drug>();
-        //List<Drug> allDrugs = new List<Drug>();
         List<Food> food2 = new List<Food>();
         List<string> countries = new List<string>();
         List<string> city = new List<string>();
@@ -259,7 +258,7 @@ namespace DIS_Project.Controllers
                 connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date] FROM[FoodDrugDb].[dbo].[Drug$]";
+                command.CommandText = "SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date],[UUID] FROM[FoodDrugDb].[dbo].[Drug$]";
                 dr = command.ExecuteReader();
                 while (dr.Read())
                 {
@@ -281,7 +280,8 @@ namespace DIS_Project.Controllers
                         State = dr["state"].ToString()
                         ,
                         Distribution = dr["distribution_pattern"].ToString()
-
+                        ,
+                        UUID = dr["UUID"].ToString()
                     });
 
                 }
@@ -347,11 +347,11 @@ namespace DIS_Project.Controllers
         [HttpPost]
         public ActionResult Delete(Drug data)
         {
-            var selected = Request.Form["chkPicture"];
+            var UUID = Request.Form["chkPicture"].ToString();
             connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection.Open();
             command.Connection = connection;
-            command.CommandText = $"DELETE FROM[FoodDrugDb].[dbo].[Drug$] Where UUID like '{data.UUID}'";
+            command.CommandText = $"DELETE FROM[FoodDrugDb].[dbo].[Drug$] Where UUID like '{UUID}'";
             dr = command.ExecuteReader();
             connection.Close();
             FetchInitialFoodData();
