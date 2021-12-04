@@ -61,7 +61,7 @@ namespace DIS_Project.Controllers
 
         string[] DrugCities = new string[]
         {
-            "Select",
+         "Select",
         "Baltimore",
         "Bridgewater",
         "Burbank",
@@ -251,6 +251,7 @@ namespace DIS_Project.Controllers
                 throw;
             }
         }
+      
         private void FetchInitialDrugData()
         {
             try

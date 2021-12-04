@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Food And Drug";
 
-    string[] TableHeaders = new string[] {"Product"
+    string[] TableHeaders = new string[] {
+        "Action",
+        "UUID",
+        "Product"
         ,"Recall Initiation Year"
         ,"Classification"
         ,"Reason for recall"
@@ -12,7 +15,18 @@
         ,"City"
         ,"State"
         ,"Distribution"
+    };
+    string[] TableHeadersFood = new string[] {
 
+        "Product"
+        ,"Recall Initiation Year"
+        ,"Classification"
+        ,"Reason for recall"
+        ,"Voluntary or Mandated"
+        ,"Country"
+        ,"City"
+        ,"State"
+        ,"Distribution"
     };
 }
 
@@ -53,7 +67,7 @@
         <section id="food">
             <div>
 
-                <h5> Select a state to filter:</h5>
+
                 @using (Html.BeginForm("getSelectedFood", "Home", FormMethod.Post))
                 {
                     <label>Country: </label>
@@ -63,16 +77,20 @@
                     <label>Recall Year: </label>
                     @Html.DropDownList("RecallFromInit", ViewBag.dateList, null, "Date")
 
-                    <input type="submit" value="Filter" />
+                    <input type="submit" value="Filter" class="btn btn-primary" />
+
+
                 }
 
 
+
             </div>
+
             <table class="foodTable">
                 <thead>
                     <tr>
                         @{
-                            foreach (var head in TableHeaders)
+                            foreach (var head in TableHeadersFood)
                             {
                                 <th>
                                     @head
@@ -116,7 +134,7 @@
 
         <section id="drug">
             <div>
-                <h5> Select a state to filter:</h5>
+
                 @using (Html.BeginForm("getSelectedDrug", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <label>Country: </label>
@@ -126,7 +144,7 @@
                     <label>Recall Year: </label>
                     @Html.DropDownList("RecallFromInitD", ViewBag.dateList, null, "Date")
 
-                    <input type="submit" value="Filter" />
+                    <input type="submit" value="Filter" class="btn btn-primary" />
                 }
             </div>
             <table class="drugTable">
@@ -155,11 +173,10 @@
                                     <tr>
                                         <td>
                                             <input name="chkPicture" type="checkbox" class="check" value="@Data.UUID" />
-                                            <input type="submit" value="DeleteBhai" />
-
-
+                                            <input type="submit" value="Delete" class="btn btn-danger" />
 
                                         </td>
+                                        <td>@Data.UUID</td>
                                         <td>@Data.ProductDescription</td>
                                         <td>@Data.RecallInitDate</td>
                                         <td>@Data.Classification</td>
@@ -169,8 +186,6 @@
                                         <td>@Data.City</td>
                                         <td>@Data.State</td>
                                         <td>@Data.Distribution</td>
-                                        <td>@Data.UUID</td>
-
                                     </tr>
 
                                 }
@@ -189,13 +204,56 @@
         </section>
 
         <section id="chart">
-            <img style="border-radius:0%" class="chart" src="../img/chart.PNG" />
-            &nbsp;
-            <p>Date that the FDA issued the enforcement report for the product recall.</p>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['bar'] });
+                google.charts.setOnLoadCallback(drawStuff);
+
+                function drawStuff() {
+                    var data = new google.visualization.arrayToDataTable([
+                        ['Year', 'Number Of Recalls'],
+                        ["2008", 38],
+                        ["2009", 19],
+                        ["2010", 3],
+                        ["2011", 57],
+                        ['2012', 2146],
+                        ['2013', 2420],
+                        ['2014', 2451],
+                        ['2015', 2750],
+                        ['2016', 3066],
+                        ['2017', 2623],
+                        ['2018', 1977],
+                        ['2019', 1807],
+                        ['2020', 1117],
+                        ['2021', 914],
+                    ]);
+
+                    var options = {
+                        title: 'Year Vs Number of Recalls',
+                        width: 900,
+                        legend: { position: 'none' },
+                        chart: {
+                            title: 'Year Vs Number of Recalls'
+                        },
+                        bars: 'horizontal', // Required for Material Bar Charts.
+                        axes: {
+                            x: {
+                                0: { side: 'top', label: 'Number Of Recalls' } // Top x-axis.
+                            }
+                        },
+                        bar: { groupWidth: "90%" }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+                    chart.draw(data, options);
+                };
+            </script>
+            <div id="top_x_div" style="width: 900px; height: 500px;"></div>
+
         </section>
 
         <section id="dataModel">
-            <img style="border-radius:0%" class="chart" src="../img/dataModel.png" />
+            <img style="border-radius:0%" class="chart" src="../img/ERDDiagram.png" />
             &nbsp;
             <p>Data Model</p>
             <p>https://github.com/Keerthana3195/DIS_Project</p>
@@ -277,7 +335,7 @@
                     <div class="column" name="team member1">
                         <!-- style="width:200px;height:280px;" -->
                         <!-- style="width:100%" -->
-                        <img src="/img/Keerthananew.png" alt="Picture of Keerthana" style="width:250px;height:250px;">
+                        <img src="/img/Keerthana final.jpeg" alt="Picture of Keerthana" style="width:250px;height:250px;">
                         <h3> Keerthana Yelchuri </h3>
                         <p style="font-size:16px"> Keerthana is a student at USF's Business Analytics and Information System's graduate program. She has worked for over 4 years as a software developer. </p>
                     </div>
@@ -289,7 +347,7 @@
                     </div>
 
                     <div class="column">
-                        <img src="/img/Sujhan.jpeg" alt="Picture of Sujhan" style="width:250px;height:250px;">
+                        <img src="/img/Sujhan final.jpeg" alt="Picture of Sujhan" style="width:250px;height:250px;">
                         <h3> Sujhan Das </h3>
                         <p style="font-size:16px">Sujhan is pursuing her Master's in Business Analytics and Information Systems. With a prior background as a data analyst, she is looking forward to the great opportunities at USF. </p>
                     </div>
@@ -302,48 +360,48 @@
         <section id="create">
             @using (Html.BeginForm("sendDataToDb", "Home", FormMethod.Post))
             {
-                <div class="container">
+
+                <div class="container" style="display: flex;flex-direction: column; align-items: end;">
                     <div class="form-group">
                         <label>Product </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Product);
+                        @Html.TextBoxFor(x => x.Foodobj.Product)
                     </div>
                     <div class="form-group">
                         <label>Recall </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Recall);
+                        @Html.TextBoxFor(x => x.Foodobj.Recall)
                     </div>
                     <div class="form-group">
                         <label>Classification </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Classification);
+                        @Html.TextBoxFor(x => x.Foodobj.Classification)
                     </div>
                     <div class="form-group">
                         <label>Reason </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Reason);
+                        @Html.TextBoxFor(x => x.Foodobj.Reason)
                     </div>
                     <div class="form-group">
                         <label>Mandate_Recall </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Mandate_Recall);
+                        @Html.TextBoxFor(x => x.Foodobj.Mandate_Recall)
                     </div>
                     <div class="form-group">
                         <label>Country </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Country);
+                        @Html.TextBoxFor(x => x.Foodobj.Country)
                     </div>
                     <div class="form-group">
                         <label>City </label>
-                        @Html.TextBoxFor(x => x.Foodobj.City);
+                        @Html.TextBoxFor(x => x.Foodobj.City)
                     </div>
                     <div class="form-group">
                         <label>State </label>
-                        @Html.TextBoxFor(x => x.Foodobj.State);
+                        @Html.TextBoxFor(x => x.Foodobj.State)
                     </div>
                     <div class="form-group">
                         <label>Distribution </label>
-                        @Html.TextBoxFor(x => x.Foodobj.Distribution);
+                        @Html.TextBoxFor(x => x.Foodobj.Distribution)
                     </div>
                     <div class=" form-group">
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </div>
-
 
             }
         </section>
