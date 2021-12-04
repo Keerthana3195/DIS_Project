@@ -22,7 +22,7 @@ namespace DIS_Project.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=Food_Drug;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.ConnectionString = "Data Source=DESKTOP-AEPCTHQ;Initial Catalog=Food;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
         public IActionResult Index()
@@ -37,7 +37,7 @@ namespace DIS_Project.Controllers
                 connection.Open();
                 command.Connection = connection;
                 //command.CommandText = "SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[reason_for_recall],[recall_initiation_date],[Product] FROM [Food_Drug].[dbo].[Food$]"; ;
-                command.CommandText = "SELECT TOP(1000)[Product],[recall_initiation_date],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM [Food_Drug].[dbo].[Food$]";
+                command.CommandText = "SELECT TOP(1000)[Product],[recall_initiation_date],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM [Food].[dbo].[Food$]";
                 dr = command.ExecuteReader();
                 while (dr.Read())
                 {
@@ -70,5 +70,11 @@ namespace DIS_Project.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
     }
 }
