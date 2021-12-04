@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace DIS_Project.Models
 {
-    public class Food
+    public class Drug
     {
-        public string Product { get; set; }
-        public string Recall { get; set; }
+        public string ProductDescription { get; set; }
+        public string RecallInitDate { get; set; }
         public string Classification { get; set; }
         public string Reason { get; set; }
-        public string Mandate_Recall { get; set; }
+        public string Voluntary_Mandate { get; set; }
 
         public string Country { get; set; }
 

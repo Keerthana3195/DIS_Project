@@ -113,6 +113,13 @@ section p{
         color: #CC0500;
         font-style: italic;
     }
+    section#create {
+        background-image: url("../img/food_back.jpg");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        color: #CC0500;
+        font-style: italic;
+    }
 select {
     margin: 12.5px;
     height: 30px;
