@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/food-drugdbserver/databases/Food_Drug",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

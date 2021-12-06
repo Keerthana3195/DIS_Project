@@ -132,10 +132,10 @@ namespace DIS_Project.Controllers
         }
         public void getFoodDataAsPerSelection(string selectedCity, string recallYear)
         {
-            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.ConnectionString = "Server=tcp:food-drugdbserver.database.windows.net,1433;Initial Catalog=Food_Drug;Persist Security Info=False;User ID=group10;Password=fooddrug123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             connection.Open();
             command.Connection = connection;
-            string initialQuery = $"SELECT TOP(1000)[Product],[recall_year],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM[FoodDrugDb].[dbo].[Fu3$]";
+            string initialQuery = $"SELECT TOP(1000)[Product],[recall_year],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM[Food_Drug].[dbo].[Food_2$]";
             command.CommandText = initialQuery;
             if (recallYear == "Select" && selectedCity != "Select")
             {
@@ -173,10 +173,10 @@ namespace DIS_Project.Controllers
 
         public void getDrugDataAsPerSelection(string cityDrug, string recallYear)
         {
-            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.ConnectionString = "Server=tcp:food-drugdbserver.database.windows.net,1433;Initial Catalog=Food_Drug;Persist Security Info=False;User ID=group10;Password=fooddrug123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             connection.Open();
             command.Connection = connection;
-            string initialQuery = $"SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date] FROM[FoodDrugDb].[dbo].[Drug$]";
+            string initialQuery = $"SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date] FROM[Food_Drug].[dbo].[Drug$]";
             command.CommandText = initialQuery;
             if (recallYear == "Select" && cityDrug != "Select")
             {
@@ -224,10 +224,10 @@ namespace DIS_Project.Controllers
         {
             try
             {
-                connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                connection.ConnectionString = "Server=tcp:food-drugdbserver.database.windows.net,1433;Initial Catalog=Food_Drug;Persist Security Info=False;User ID=group10;Password=fooddrug123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT TOP(1000)[Product],[recall_year],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM [FoodDrugDb].[dbo].[Fu3$]";
+                command.CommandText = "SELECT TOP(1000)[Product],[recall_year],[classification],[reason_for_recall],[voluntary_mandated],[country],[city],[state],[distribution_pattern] FROM [Food_Drug].[dbo].[Food_2$]";
                 dr = command.ExecuteReader();
                 while (dr.Read())
                 {
@@ -256,10 +256,10 @@ namespace DIS_Project.Controllers
         {
             try
             {
-                connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                connection.ConnectionString = "Server=tcp:food-drugdbserver.database.windows.net,1433;Initial Catalog=Food_Drug;Persist Security Info=False;User ID=group10;Password=fooddrug123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date],[UUID] FROM[FoodDrugDb].[dbo].[Drug$]";
+                command.CommandText = "SELECT TOP(1000)[city],[state],[country],[classification],[voluntary_mandated],[distribution_pattern],[product_description],[reason_for_recall],[recall_initiation_date],[UUID] FROM[Food_Drug].[dbo].[Drug$]";
                 dr = command.ExecuteReader();
                 while (dr.Read())
                 {
@@ -349,10 +349,10 @@ namespace DIS_Project.Controllers
         public ActionResult Delete(Drug data)
         {
             var UUID = Request.Form["chkPicture"].ToString();
-            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.ConnectionString = "Server=tcp:food-drugdbserver.database.windows.net,1433;Initial Catalog=Food_Drug;Persist Security Info=False;User ID=group10;Password=fooddrug123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             connection.Open();
             command.Connection = connection;
-            command.CommandText = $"DELETE FROM[FoodDrugDb].[dbo].[Drug$] Where UUID like '{UUID}'";
+            command.CommandText = $"DELETE FROM[Food_Drug].[dbo].[Drug$] Where UUID like '{UUID}'";
             dr = command.ExecuteReader();
             connection.Close();
             FetchInitialFoodData();
@@ -367,7 +367,7 @@ namespace DIS_Project.Controllers
         [HttpPost]
         public ActionResult sendDataToDb(AllData f1)
         {
-            connection.ConnectionString = "Data Source=DESKTOP-HQCSK8E;Initial Catalog=FoodDrugDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection.ConnectionString = "Server=tcp:food-drugdbserver.database.windows.net,1433;Initial Catalog=Food_Drug;Persist Security Info=False;User ID=group10;Password=fooddrug123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             connection.Open();
             command.Connection = connection;
             Food obj = new Food();
@@ -382,7 +382,7 @@ namespace DIS_Project.Controllers
             obj.State = f1.Foodobj.State;
             obj.Mandate_Recall = f1.Foodobj.Mandate_Recall;
 
-            command.CommandText = $"INSERT INTO[FoodDrugDb].[dbo].[Fu3$] VALUES ('{obj.City}','{obj.State}','{obj.Country}','{obj.Classification}','{obj.Mandate_Recall}','{obj.Distribution}','{obj.Reason}','NULL','{obj.Product}','{obj.Recall}','NULL','NULL')";
+            command.CommandText = $"INSERT INTO[Food_Drug].[dbo].[Food_2$] VALUES ('{obj.City}','{obj.State}','{obj.Country}','{obj.Classification}','{obj.Mandate_Recall}','{obj.Distribution}','{obj.Reason}','NULL','{obj.Product}','{obj.Recall}','NULL','NULL')";
             dr = command.ExecuteReader();
             connection.Close();
             FetchInitialFoodData();
